@@ -22,6 +22,22 @@
         android:layout_marginBottom="20dp"
         android:hint="Word"/>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="55dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tomar una foto"
+        android:onClick="takePicture"
+        android:layout_gravity="center"
+        android:layout_margin="55dp"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

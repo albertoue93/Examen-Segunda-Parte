@@ -41,7 +41,9 @@ public class Word {
     @ColumnInfo(name = "word")
     private String word;
 
-    public Word() { }
+
+    public Word() {
+    }
 
     public int getId() {
         return id;
@@ -59,4 +61,6 @@ public class Word {
     public String getWord() {
         return this.word;
     }
+
+
 }
