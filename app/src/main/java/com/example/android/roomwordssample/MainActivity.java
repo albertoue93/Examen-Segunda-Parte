@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,7 +39,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class MainActivity extends AppCompatActivity implements WordListAdapter.ItemClicked{
+public class MainActivity extends AppCompatActivity implements WordListAdapter.ItemClicked {
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.I
                 // Update the cached copy of the words in the adapter.
                 adapter.setWords(words);
             }
-
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -81,20 +81,15 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.I
                 new ItemTouchHelper.SimpleCallback(0,
                         ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
                     @Override
-                    public boolean onMove(RecyclerView recyclerView,
-                                          RecyclerView.ViewHolder viewHolder,
-                                          RecyclerView.ViewHolder target) {
+                    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                         return false;
                     }
 
                     @Override
-                    public void onSwiped(RecyclerView.ViewHolder viewHolder,
-                                         int direction) {
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                         int position = viewHolder.getAdapterPosition();
                         Word myWord = adapter.getWordAtPosition(position);
-                        Toast.makeText(MainActivity.this, "Deleting " +
-                                myWord.getWord(), Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(MainActivity.this, "Deleting " + myWord.getWord(), Toast.LENGTH_LONG).show();
                         // Delete the word
                         mWordViewModel.deleteWord(myWord);
                     }
@@ -110,22 +105,16 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.I
             Word word = new Word();
             word.setWord(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
             mWordViewModel.insert(word);
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.saved,
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.saved, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void updateClicked(Word word) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final View view1 = getLayoutInflater().inflate(R.layout.row_words,null);
+        final View view1 = getLayoutInflater().inflate(R.layout.row_words, null);
         final EditText editWord = view1.findViewById(R.id.editWord);
 
         editWord.setText(word.getWord());
@@ -136,15 +125,19 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.I
             public void onClick(View view) {
                 word.setWord(editWord.getText().toString());
                 mWordViewModel.update(word);
-                Toast.makeText(
-                        getApplicationContext(),
-                        R.string.updated,
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText( getApplicationContext(), R.string.updated, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
 
         builder.setView(view1);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void btnCancel(View view) {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
     }
 }

@@ -32,7 +32,7 @@ import androidx.annotation.NonNull;
  * https://developer.android.com/topic/libraries/architecture/room.html
  */
 
-@Entity(tableName = "word_table")
+@Entity(tableName = "word_table1")
 public class Word {
 
     @PrimaryKey(autoGenerate = true)

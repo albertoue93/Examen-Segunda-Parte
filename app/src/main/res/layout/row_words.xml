@@ -29,5 +29,13 @@
         android:text="Update"
         android:id="@+id/btnUpdateWord"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/buttonLabel" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:onClick="btnCancel"
+        android:text="Cancel" />
 </LinearLayout>
