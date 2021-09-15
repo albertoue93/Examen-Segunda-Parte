@@ -1,6 +1,6 @@
 RoomWordsSample
 ================
-https://www.code-inspector.com/project/28635/score/svg
+![code quality score](https://www.code-inspector.com/project/28635/score/svg)
 
 This repository contains the finished sample code for the
 [Architecture Components codelab](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..%2Findex#0) in Java on the master branch and in Kotlin for the [Architecture Components Kotlin codelab](https://codelabs.developers.google.com/codelabs/android-room-with-a-view-kotlin) on the [kotlin](https://github.com/googlecodelabs/android-room-with-a-view/tree/kotlin) branch.
